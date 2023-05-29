@@ -4,16 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.main.CurrencyDetailsFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCurrencies"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/tvExchangeRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/convertation_text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBaseCurrency"
+        android:layout_width="319dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="4dp"
+        android:hint="@string/eur"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.161"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvExchangeRate">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBaseCurrency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilConvertedCurrencyAmount"
+        android:layout_width="319dp"
+        android:layout_height="59dp"
+
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.161"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilBaseCurrency">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConvertedCurrencyAmount"
+            android:enabled="false"
+            android:clickable="false"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--    <EditText-->
+<!--        android:id="@+id/editTextNumber"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="number"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.055"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
