@@ -1,4 +1,4 @@
-package com.example.mtsinternship.ui.main;
+package com.example.mtsinternship.ui.decoration;
 
 import android.graphics.Rect;
 import android.view.View;

@@ -9,11 +9,13 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mtsinternship.App
 import com.example.mtsinternship.data.model.CurrencyModel
 import com.example.mtsinternship.databinding.FragmentCurrencyListBinding
 import com.example.mtsinternship.ui.adapter.CurrencyAdapter
+import com.example.mtsinternship.ui.decoration.GridSpacingItemDecoration
 import com.example.mtsinternship.utils.Status
 import com.example.mtsinternship.viewmodel.CurrencyListViewModel
 import java.util.Locale
@@ -119,7 +121,8 @@ class CurrencyListFragment : Fragment() {
     }
 
     private fun onCurrencyClick(currency: CurrencyModel) {
-
+        val action = CurrencyListFragmentDirections.actionListFragmentToDetailsFragment(exchangeRate = currency.value.toFloat(), currencyName = currency.name)
+        findNavController().navigate(action)
     }
 
     private fun renderList(currencies: List<CurrencyModel>) {
