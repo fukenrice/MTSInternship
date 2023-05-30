@@ -52,7 +52,9 @@ class CurrencyListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupView()
         setupObserver()
-        viewModel.getCurrencies()
+        if (viewModel.isEmpty()) {
+            viewModel.getCurrencies()
+        }
     }
 
     override fun onDestroyView() {
