@@ -36,7 +36,7 @@ class CurrencyListViewModel @Inject constructor(private val apiService: ApiServi
                         newList.add(CurrencyModel(key, rates.get(key).toString().toDouble()))
                     }
                     currencyList = newList.toMutableList()
-                    shownCurrencyList.postValue(Resource.success(newList.toMutableList()))
+                    shownCurrencyList.postValue(Resource.successUnfiltered(newList.toMutableList()))
                 },
                 { error ->
                     Log.d(TAG, "getCurrencies: " + error.message.toString())

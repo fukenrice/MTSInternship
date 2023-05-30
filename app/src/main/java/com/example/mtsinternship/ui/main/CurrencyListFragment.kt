@@ -52,6 +52,8 @@ class CurrencyListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupView()
         setupObserver()
+        // Тк модель является синглтоном, она не пересоздается вместе с фрагметом, значит можно
+        // ориентироваться на ее состояние при смене ориентации устройства.
         if (viewModel.isEmpty()) {
             viewModel.getCurrencies()
         }
@@ -107,6 +109,10 @@ class CurrencyListFragment : Fragment() {
                 Status.LOADING -> {
                     enableSearchView(binding.searchView, false)
                     binding.progressBar.visibility = View.VISIBLE
+                }
+                Status.SUCCESS_UNFILTERED -> {
+                    binding.progressBar.visibility = View.GONE
+                    viewModel.filterList(binding.searchView.query.toString().uppercase())
                 }
                 Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
