@@ -4,17 +4,20 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.androidnetworking.error.ANError
 import com.example.mtsinternship.data.api.ApiService
 import com.example.mtsinternship.data.model.CurrencyModel
 import com.example.mtsinternship.utils.Resource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.json.JSONObject
+import java.net.UnknownHostException
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CurrencyListViewModel @Inject constructor(private val apiService: ApiService) :
     ViewModel() {
-    // TODO: Сделал адаптер, надо сделать вью модель, фрагмент + еще один фрагмент и вью модель. Попутно даггер + тесты
     private val shownCurrencyList =
         MutableLiveData<Resource<List<CurrencyModel>>>(Resource.loading(null))
     private var currencyList: List<CurrencyModel> = listOf()
@@ -35,13 +38,25 @@ class CurrencyListViewModel @Inject constructor(private val apiService: ApiServi
                         newList.add(CurrencyModel(key, rates.get(key).toString().toDouble()))
                     }
                     currencyList = newList.toMutableList()
-                    shownCurrencyList.postValue(Resource.success(newList.toMutableList()))
+                    shownCurrencyList.postValue(Resource.successUnfiltered(newList.toMutableList()))
                 },
                 { error ->
-                    Log.d(TAG, "getCurrencies: " + error.message.toString())
-                    shownCurrencyList.postValue(Resource.error(error.message.toString(),
-                        shownCurrencyList.value?.data
-                    ))
+                    Log.d(TAG, "getCurrencies: error message = " + error.message.toString())
+                    if (error is ANError && error.errorCode == 0) {
+                        shownCurrencyList.postValue(
+                            Resource.error(
+                                "Ошибка при получении данных, проверьте подключение к сети",
+                                shownCurrencyList.value?.data
+                            )
+                        )
+                    } else {
+                        shownCurrencyList.postValue(
+                            Resource.error(
+                                error.message.toString(),
+                                shownCurrencyList.value?.data
+                            )
+                        )
+                    }
                 }
             )
     }
@@ -53,4 +68,6 @@ class CurrencyListViewModel @Inject constructor(private val apiService: ApiServi
         val filteredList = currencyList.filter { it.name.startsWith(query) }
         shownCurrencyList.postValue(Resource.success(filteredList))
     }
+
+    fun isEmpty() = currencyList.isEmpty()
 }

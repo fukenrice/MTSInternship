@@ -17,4 +17,5 @@
         Приложение реализовано в формате Single Activity, имеет одну host-activity и два фрагмента. Архитектура приложения Model-View-ViewModel.
         В приложении используется Dagger для DI, Jetpack navigation для навигации между фрагментами, Rx2AndroidNetworking для запросов в сеть(надстройка над OkHttp, позволяющая получать реактивные объекты).
         При разработке старался придерживаться паттернов, рекомендуемых Google.</string>
+    <string name="search_hint">Код валюты</string>
 </resources>
