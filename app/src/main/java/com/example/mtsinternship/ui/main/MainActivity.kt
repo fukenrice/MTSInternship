@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     .setTitle(getString(R.string.about_title))
                     .setMessage(getString(R.string.about_content))
                     .setNeutralButton(android.R.string.ok, null)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIcon(android.R.drawable.ic_dialog_info)
                     .show()
                 return true
             }
