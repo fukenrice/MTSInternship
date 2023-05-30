@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".ui.main.CurrencyListFragment">
+    android:padding="16dp" tools:context=".ui.main.CurrencyListFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -47,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="10.0sp"
+                android:paddingBottom="?attr/actionBarSize"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
