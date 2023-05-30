@@ -1,14 +1,16 @@
 package com.example.mtsinternship.ui.main
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
 import com.example.mtsinternship.R
 import com.example.mtsinternship.databinding.ActivityMainBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,11 +36,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_about -> {
+                MaterialAlertDialogBuilder(this)
+                    .setTitle(getString(R.string.about_title))
+                    .setMessage(getString(R.string.about_content))
+                    .setNeutralButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show()
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
