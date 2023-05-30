@@ -10,6 +10,7 @@ import javax.inject.Singleton
 class ApiServiceImpl @Inject constructor() : ApiService {
     // Не нашел API, где на бесплатном тарифе давали бы выбирать валюту, так что запрос относительно EUR.
     // Если купить тариф, тогда стоит добавить в запрос параметр &base=RUB
+    // ВАЖНО - apiKey импортируем из файла secrets.kt, находящегося в этом же пакете, в проекте приведен его семпл.
     val url = "http://api.exchangeratesapi.io/v1/latest?access_key=$apiKey"
 
     // Можно создать объект класс модели, содержащий все валюты, чтобы не парсить объект во вьюмодели,
